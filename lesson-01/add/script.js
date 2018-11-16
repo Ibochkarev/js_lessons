@@ -1,8 +1,9 @@
 'use strict';
 
-let num = [ 3, 3, 7, 2, 1 ];
+let num = 33721;
+let charNum = ('' + num).split('');
 
-let result = num.reduce(function (sum, current) {
+let result = charNum.reduce(function (sum, current) {
   return sum * current
 });
 
