@@ -7,7 +7,7 @@ let week = ['Понедельник',
     'Пятница',
     'Суббота',
     'Воскресенье'
-],
+  ],
   today = new Date();
 
 for (let i = 0; i < week.length; i++) {
