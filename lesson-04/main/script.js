@@ -57,7 +57,7 @@ let appData = {
         percent = +prompt("Под какой процент?", "");
 
       appData.monthIncome = (save / 100 / 12 * percent).toFixed(2);
-      alert("Доход в месяц " + appData.monthIncome + " руб.")
+      alert("Доход в месяц " + appData.monthIncome + " руб.");
     }
   },
   chooseOptExpenses: function () {
