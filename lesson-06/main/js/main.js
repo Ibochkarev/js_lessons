@@ -128,8 +128,9 @@ optionalExpensesBtn.addEventListener('click', function() {
 
 countBtn.addEventListener('click', function() {
   if (appData.budget != undefined) {
-    appData.moneyPerDay = ((appData.budget - expensesSum) / 30).toFixed();
-    dayBudgetValue.textContent = appData.moneyPerDay;
+    appData.budgetDay = (appData.budget - expensesValue.textContent) / 30;
+
+    dayBudgetValue.textContent = appData.budgetDay.toFixed();
 
     if (appData.moneyPerDay < 100) {
       levelValue.textContent = 'Минимальный уровень достатка.';
