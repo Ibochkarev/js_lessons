@@ -20,7 +20,6 @@ let expensesValue = document.getElementsByClassName('expenses-value')[0];
 let optionalExpensesValue = document.getElementsByClassName(
   'optionalexpenses-value'
 )[0];
-
 // Дополнительный доход
 let incomeValue = document.getElementsByClassName('income-value')[0];
 
@@ -44,7 +43,7 @@ let countBtn = document.getElementsByTagName('button')[2];
 
 // Получить поля для ввода необязательных расходов (optionalexpenses-item)
 // при помощи querySelectorAll
-let optionalExpensesItems = document.querySelectorAll('.optionalexpenses-item');
+let optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item');
 
 // Получить оставшиеся поля через querySelector
 // (статьи возможного дохода, чекбокс, сумма, процент, год, месяц, день)
@@ -103,10 +102,11 @@ expensesBtn.addEventListener('click', function() {
     if (
       typeof a === 'string' &&
       typeof a != null &&
-      typeof b != null &&
       a != '' &&
-      b != '' &&
-      a.length < 50
+      a.length < 50 &&
+      typeof b === 'string' &&
+      typeof b != null &&
+      b != ''
     ) {
       appData.expenses[a] = b;
       sum += +b;
@@ -114,13 +114,15 @@ expensesBtn.addEventListener('click', function() {
       alert('Введите значение!');
       i--;
     }
+    expensesValue.textContent = sum;
+    expensesSum = sum;
   }
-  expensesValue.textContent = sum;
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
-  for (let i = 0; i < optionalExpensesItems.length; i++) {
-    let opt = optionalExpensesItems[i].value;
+  for (let i = 0; i < optionalExpensesItem.length; i++) {
+    let opt = optionalExpensesItem[i].value;
+
     appData.optionalExpenses[i] = opt;
     optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
   }
@@ -128,9 +130,8 @@ optionalExpensesBtn.addEventListener('click', function() {
 
 countBtn.addEventListener('click', function() {
   if (appData.budget != undefined) {
-    appData.budgetDay = (appData.budget - expensesValue.textContent) / 30;
-
-    dayBudgetValue.textContent = appData.budgetDay.toFixed();
+    appData.moneyPerDay = ((appData.budget - expensesSum) / 30).toFixed();
+    dayBudgetValue.textContent = appData.moneyPerDay;
 
     if (appData.moneyPerDay < 100) {
       levelValue.textContent = 'Минимальный уровень достатка.';
@@ -139,7 +140,7 @@ countBtn.addEventListener('click', function() {
     } else if (appData.moneyPerDay > 2000) {
       levelValue.textContent = 'Высокий уровень достатка.';
     } else {
-      levelValue.textContent = 'Произошла ошибка';
+      levelValue.textContent = 'Что то пошло не по моему =(';
     }
   } else {
     dayBudgetValue.textContent = 'Произошла ошибка!';
@@ -186,15 +187,36 @@ percentValue.addEventListener('input', function() {
   }
 });
 
-optionalExpensesItems.forEach(item => {
-  item.addEventListener('input', () => {
-    if (item.value.length >= 1 && item.value.length >= 1) {
-      optionalExpensesBtn.removeAttribute('disabled');
-    } else {
-      optionalExpensesBtn.setAttribute('disabled', '');
-    }
+function disabledBtn() {
+  expensesBtn.disabled = true;
+  optionalExpensesBtn.disabled = true;
+
+  for (let i = 0; i < expensesItem.length; i++) {
+    expensesItem[i].addEventListener('input', function() {
+      for (let j = 0; j < expensesItem.length; j++) {
+        if (expensesItem[j].value != '') {
+          expensesBtn.disabled = false;
+        } else {
+          expensesBtn.disabled = true;
+        }
+      }
+    });
+  }
+
+  optionalExpensesItem.forEach(function(item) {
+    item.addEventListener('input', function() {
+      for (let i = 0; i < optionalExpensesItem.length; i++) {
+        if (optionalExpensesItem[i].value != '') {
+          optionalExpensesBtn.disabled = false;
+        } else {
+          optionalExpensesBtn.disabled = true;
+        }
+      }
+    });
   });
-});
+}
+
+disabledBtn();
 
 let appData = {
   budget: money,
