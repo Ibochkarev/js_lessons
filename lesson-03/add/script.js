@@ -9,17 +9,21 @@
 // Из получившейся строки вырезать слово “легким”, в этом же слове заменить 2 последние буквы на букву “о”
 // Вывести на экран то, что получилось
 
-let str = 'урок-3-был слишком легким';
+function passThroughStringMethods() {
 
-let secondStr = str[0].toUpperCase() + str.replace(/-/g, ' ').slice(1);
+    let str = "урок-3-был слишком легким",
+        strStartCapital = str[0].toUpperCase() + str.slice(1),
+        strReplace = strStartCapital.replace(/-/g, " "),
+        strCutJoin = strReplace.replace("легким", "легко");
 
-console.log(secondStr);
-document.write('<p>' + secondStr + '</p>');
+    console.log("1) " + strStartCapital);
+    console.log("2) " + strReplace);
+    console.log("3) " + strCutJoin);
 
-let newStr = secondStr.replace('им', 'оо').split(' ')[4];
+};
 
-document.write('<p>' + newStr + '</p>');
-console.log(newStr);
+passThroughStringMethods();
+
 
 // У вас также есть массив arr = [20, 33, 1, “Человек”, 2, 3]
 // Вывести в консоль квадратный корень из суммы кубов его элементов(Да, человека нужно исключить)
