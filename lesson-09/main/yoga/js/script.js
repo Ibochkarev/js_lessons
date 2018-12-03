@@ -105,14 +105,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // Modal on click buttons in tabs
 
-  let infoWrapper = document.querySelector('.info'),
-    descriptionBtn = document.querySelectorAll('.description-btn');
+  let infoWrapper = document.querySelector('.info');
 
   infoWrapper.addEventListener('click', function (event) {
     let target = event.target;
     if (target && target.classList.contains('description-btn')) {
       overlay.style.display = 'block';
-      this.classList.add('more-splash');
+      target.classList.add('more-splash');
       document.body.style.overflow = 'hidden';
     }
   });
