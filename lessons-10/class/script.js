@@ -1,13 +1,7 @@
 'use strict';
 
 class Options {
-  constructor(
-    height = 'auto',
-    width = '700px',
-    bg = '#ccc',
-    fontSize = '16px',
-    textAlign = 'center'
-  ) {
+  constructor(height, width, bg, fontSize, textAlign) {
     this.height = height;
     this.width = width;
     this.bg = bg;
@@ -15,14 +9,11 @@ class Options {
     this.textAlign = textAlign;
   }
 
-  createNewDiv(elem, text) {
+  createNewDiv(text) {
     let div = document.createElement('div');
-    div.style.height = this.height;
-    div.style.height = this.height;
-    div.style.width = this.width;
-    div.style.background = this.bg;
-    div.style.fontSize = this.fontSize;
-    div.style.textAlign = this.textAlign;
+    div.style.cssText = `height: ${this.height}px; width: 
+    ${this.width}px; background: ${this.bg}; font-size: 
+    ${this.fontSize}px; text-align: ${this.textAlign}`;
     div.textContent = text;
     elem.appendChild(div);
   }
@@ -31,4 +22,4 @@ class Options {
 let elem = document.body;
 elem.style.cssText = 'color: red; font-size: 20px; font-weight: bold;';
 
-let div = new Options().createNewDiv(elem, 'тут должен быть текст');
+let div = new Options(700, 1200, '#ccc', 16, 'center').createNewDiv('тут должен быть текст');
