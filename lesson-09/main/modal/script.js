@@ -12,7 +12,8 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   function showUser(surname, name) {
-    alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
+    alert("Пользователь " + surname + " " + name +
+      ", его возраст " + this.value);
   }
 
 });
