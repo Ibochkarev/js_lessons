@@ -1,19 +1,18 @@
-'use strict';
+window.addEventListener("DOMContentLoaded", function () {
+  'use strict';
 
-let age = document.getElementById('age'),
-    value = age.value,
-    user = new User ('Ivan', 'Petrichenko', value);
+  let age = document.getElementById('age'),
+    user = {
+      name: "Ivan",
+      surname: "Bochkarev"
+    };
 
-class User {
-  constructor(surname, name, value) {
-    this.surname = surname;
-    this.name = name;
-    this.value = value;
+  age.addEventListener("change", function () {
+    showUser.apply(this, [user.surname, user.name]);
+  });
+
+  function showUser(surname, name) {
+    alert("Пользователь " + surname + " " + name + ", его возраст " + this.value);
   }
-}
 
-function showUser(surname, name) {
-  alert("Пользователь " + this.surname + " " + this.name + ", его возраст " + this.value);
-}
-
-showUser.apply(user, ['surname', 'name']);
+});
