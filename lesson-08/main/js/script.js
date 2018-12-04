@@ -35,29 +35,28 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // Timer
-  let deadline = '2018-12-4';
+  let deadline = '2018-12-5';
 
   function getTimeRemaining(endtime) {
-    let t = Date.parse(endtime) - Date.parse(new Date()),
+    let t = (Date.parse(endtime) - Date.parse(new Date()) +
+        (new Date().getTimezoneOffset()) * 60 * 1000),
       seconds = Math.floor((t / 1000) % 60),
       minutes = Math.floor((t / 1000 / 60) % 60),
       hours = Math.floor(t / (1000 * 60 * 60));
-
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
 
     return {
       'total': t,
       'hours': hours,
       'minutes': minutes,
       'seconds': seconds
+    };
+  }
+
+  function addZeroToDate(date) {
+    if (date.toString().length == 1) {
+      return "0" + date.toString();
+    } else {
+      return date;
     }
   }
 
@@ -70,9 +69,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function updateClock() {
       let t = getTimeRemaining(endtime);
-      hours.textContent = t.hours;
-      minutes.textContent = t.minutes;
-      seconds.textContent = t.seconds;
+      hours.textContent = addZeroToDate(t.hours);
+      minutes.textContent = addZeroToDate(t.minutes);
+      seconds.textContent = addZeroToDate(t.seconds);
 
       if (t.total <= 0) {
         clearInterval(timeInterval);
