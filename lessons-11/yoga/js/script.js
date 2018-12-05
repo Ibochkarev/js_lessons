@@ -155,11 +155,26 @@ window.addEventListener('DOMContentLoaded', function () {
 
     request.addEventListener('readystatechange', function () {
       if (request.readyState < 4) {
-        statusMessage.innerHTML = message.loading;
-      } else if (request.readyState === 4 && request.status == 200) {
-        statusMessage.innerHTML = message.success;
+        //statusMessage.innerHTML = message.loading;
+        statusMessage.innerHTML = "";
+        let img = document.createElement("img");
+        img.src = "img/ajax-loader.gif";
+        statusMessage.appendChild(img);
+      } else if (request.readyState == 4 && request.status == 200) {
+        statusMessage.innerHTML = "";
+        let success = document.createElement("img");
+        success.src = "img/checked.png";
+        success.width = 32;
+        success.height = 32;
+        statusMessage.appendChild(success);
       } else {
-        statusMessage.innerHTML = message.failure;
+        //statusMessage.innerHTML = message.failure;
+        statusMessage.innerHTML = "";
+        let alarm = document.createElement("img");
+        alarm.src = "img/cancel.png";
+        alarm.width = 32;
+        alarm.height = 32;
+        statusMessage.appendChild(alarm);
       }
     });
 
@@ -189,11 +204,26 @@ window.addEventListener('DOMContentLoaded', function () {
 
     request.addEventListener('readystatechange', function () {
       if (request.readyState < 4) {
-        statusMessage.innerHTML = message.loading;
-      } else if (request.readyState === 4 && request.status == 200) {
-        statusMessage.innerHTML = message.success;
+        //statusMessage.innerHTML = message.loading;
+        statusMessage.innerHTML = "";
+        let img = document.createElement("img");
+        img.src = "img/ajax-loader.gif";
+        statusMessage.appendChild(img);
+      } else if (request.readyState == 4 && request.status == 200) {
+        statusMessage.innerHTML = "";
+        let success = document.createElement("img");
+        success.src = "img/checked.png";
+        success.width = 32;
+        success.height = 32;
+        statusMessage.appendChild(success);
       } else {
-        statusMessage.innerHTML = message.failure;
+        //statusMessage.innerHTML = message.failure;
+        statusMessage.innerHTML = "";
+        let alarm = document.createElement("img");
+        alarm.src = "img/cancel.png";
+        alarm.width = 32;
+        alarm.height = 32;
+        statusMessage.appendChild(alarm);
       }
     });
 
