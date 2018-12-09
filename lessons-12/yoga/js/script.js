@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
   let tab = document.querySelectorAll('.info-header-tab'),
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  info.addEventListener('click', function(event) {
+  info.addEventListener('click', function (event) {
     let target = event.target;
     if (target && target.classList.contains('info-header-tab')) {
       for (let i = 0; i < tab.length; i++) {
@@ -89,13 +89,13 @@ window.addEventListener('DOMContentLoaded', function() {
     overlay = document.querySelector('.overlay'),
     close = document.querySelector('.popup-close');
 
-  more.addEventListener('click', function() {
+  more.addEventListener('click', function () {
     overlay.style.display = 'block';
     this.classList.add('none');
     document.body.style.overflow = 'hidden';
   });
 
-  close.addEventListener('click', function() {
+  close.addEventListener('click', function () {
     overlay.style.display = 'none';
     more.classList.remove('more-splash');
     document.body.style.overflow = '';
@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   let infoWrapper = document.querySelector('.info');
 
-  infoWrapper.addEventListener('click', function(event) {
+  infoWrapper.addEventListener('click', function (event) {
     let target = event.target;
     if (target && target.classList.contains('description-btn')) {
       overlay.style.display = 'block';
@@ -123,13 +123,13 @@ window.addEventListener('DOMContentLoaded', function() {
   };
 
   let form = document.querySelector('.main-form'),
-    input = document.querySelectorAll('input[type="tel"]'),
+    input = document.querySelectorAll('input[type=tel]'),
     statusMessage = document.createElement('div'),
     form2 = document.getElementById('form'),
     inputsGroups = document.querySelectorAll('input');
 
-  input.forEach(function(item) {
-    item.addEventListener('keydown', function(e) {
+  input.forEach(function (item) {
+    item.addEventListener('keydown', function (e) {
       if (!/\d|\+/gm.test(e.key) && e.keyCode != 8) {
         e.preventDefault();
       }
@@ -141,15 +141,15 @@ window.addEventListener('DOMContentLoaded', function() {
 
   statusMessage.classList.add('status');
 
-  [form, form2].forEach(function(item) {
-    item.addEventListener('submit', function(event) {
+  [form, form2].forEach(function (item) {
+    item.addEventListener('submit', function (event) {
       event.preventDefault();
       item.appendChild(statusMessage);
 
       let formData = new FormData(item);
 
       function postData(data) {
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           let request = new XMLHttpRequest();
 
           request.open('POST', 'server.php');
@@ -158,7 +158,7 @@ window.addEventListener('DOMContentLoaded', function() {
             'application/x-www-form-urlencoded'
           );
 
-          request.onreadystatechange = function() {
+          request.onreadystatechange = function () {
             if (request.readyState < 4) {
               resolve();
             } else if (request.readyState === 4) {
