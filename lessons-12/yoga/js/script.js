@@ -145,6 +145,7 @@ window.addEventListener('DOMContentLoaded', function () {
     item.addEventListener('submit', function (event) {
       event.preventDefault();
       item.appendChild(statusMessage);
+      let input = item.getElementsByTagName('input');
 
       let formData = new FormData(item);
 
@@ -174,8 +175,8 @@ window.addEventListener('DOMContentLoaded', function () {
       }
 
       function cleanInput() {
-        for (let i = 0; i < inputsGroups.length; i++) {
-          inputsGroups[i].value = '';
+        for (let i = 0; i < input.length; i++) {
+          input[i].value = '';
         }
       }
       postData(formData)
